@@ -28,7 +28,9 @@ pipeline {
         }
       stage('Docker') {
         steps {
-          docker.build('fabien6668/exemplews')
+          script {
+            docker.build('fabien6668/exemplews')
+          }
         }
       }
     }
