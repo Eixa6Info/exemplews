@@ -26,7 +26,7 @@ pipeline {
                 }
             }
         }
-      stage {
+      stage('Docker') {
         docker.build('fabien6668/exemplews')
       }
     }
