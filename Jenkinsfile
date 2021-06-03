@@ -1,6 +1,7 @@
 pipeline {
-  agent any
- 
+  agent {
+          docker {image 'docker'}
+        }
   tools { 
         maven 'maven' 
         jdk 'jdk8' 
@@ -27,9 +28,7 @@ pipeline {
             }
         }
       stage('Docker') {
-        agent {
-          docker {image 'docker'}
-        }
+       
         steps {
             sh 'docker -v'
             sh 'docker build -t fabien6668/exemplews .'
