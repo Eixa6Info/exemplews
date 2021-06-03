@@ -32,6 +32,7 @@ pipeline {
         }
         steps {
           script {
+            sh 'docker -v'
             docker.build('fabien6668/exemplews')
           }
         }
