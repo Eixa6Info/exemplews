@@ -31,10 +31,9 @@ pipeline {
           docker {image 'docker'}
         }
         steps {
-          script {
             sh 'docker -v'
-            docker.build('fabien6668/exemplews')
-          }
+            sh 'docker build -t fabien6668/exemplews .'
+          
         }
       }
     }
