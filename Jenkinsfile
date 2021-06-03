@@ -24,7 +24,16 @@ pipeline {
                     junit 'target/surefire-reports/**/*.xml' 
                 }
             }
+        }   
+        stage('Test') {
+          agent {
+               docker { image 'node:14-alpine' }
+          }
+          steps {
+                sh 'node --version'
+            }
         }
+   
       stage('Docker') {
        agent {
           docker {image 'docker'}
