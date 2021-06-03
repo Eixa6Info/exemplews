@@ -27,6 +27,9 @@ pipeline {
             }
         }
       stage('Docker') {
+        agent {
+          docker {image 'docker'}
+        }
         steps {
           script {
             docker.build('fabien6668/exemplews')
