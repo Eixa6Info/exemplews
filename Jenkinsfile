@@ -1,5 +1,5 @@
 pipeline {
-  agent any
+  agent {label 'docker'}
   tools { 
         maven 'maven' 
         jdk 'jdk8' 
@@ -24,6 +24,29 @@ pipeline {
                     junit 'target/surefire-reports/**/*.xml' 
                 }
             }
+        }   
+        stage('Test') {
+          agent {
+               docker { 
+                 label 'docker'
+                 image 'node:14-alpine' 
+               }
+          }
+          steps {
+                sh 'node --version'
+            }
         }
+   
+      stage('Docker') {
+       agent {
+          docker {image 'docker'}
+        }
+        steps {
+            echo 'Execution de docker'
+            sh 'docker -v'
+            sh 'docker build -t fabien6668/exemplews .'
+          
+        }
+      }
     }
 }
